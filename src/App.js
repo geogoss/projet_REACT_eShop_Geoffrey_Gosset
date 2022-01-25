@@ -22,11 +22,11 @@ function App() {
 
   // les articles en tant qu'objet dans un tableau pour avoir facile à les récupérer
   const [articles, setArticles] = useState([
-    { nom: "Crayons de couleur", prix: 15, unite: 12, img: imgCrayon },
+    { nom: "Crayons de couleur", prix: 15, unite: 4, img: imgCrayon },
     { nom: "Chaise de bureau", prix: 138, unite: 2, img: imgChaise },
-    { nom: "Rangement crayons", prix: 42, unite: 7, img: imgPot },
+    { nom: "Rangement crayons", prix: 42, unite: 3, img: imgPot },
     { nom: "Agenda", prix: 17, unite: 10, img: imgAgenda },
-    { nom: "Classeur", prix: 9, unite: 26, img: imgClasseur }
+    { nom: "Classeur", prix: 9, unite: 10, img: imgClasseur }
   ])
 
   // Opération acheter
@@ -39,7 +39,7 @@ function App() {
     // Action
     copieArgent -= articles[i].prix;
     copieArticles[i].unite--;
-    panier.push(articles[i])
+    panier.unshift(articles[i])
 
     // update les useState
     setArticles(copieArticles);
@@ -68,9 +68,15 @@ function App() {
 
   };
 
+  // Toggle sur le pannier
+  const [toggle, setToggle] = useState(false)
+  const changeToggle = () => {
+    setToggle(!toggle)
+  }
+
   return (
     <div className="App">
-      <Header />
+      <Header toggle={changeToggle} />
       <p className="display-6 ms-5 fw-bold">Mon argent : {argent}</p>
       <div className="carte row m-0">
         {articles.map((el, i) => {
@@ -79,15 +85,17 @@ function App() {
           );
         })}
       </div>
+      {toggle &&
+        <div className="achat">
+          {panier.map((el, i) => {
+            return (
+              <Panier key={i} article={el} revendre={() => revendre(i)} />
+            );
+          })}
 
-      <div className="achat">
-        {panier.map((el, i) => {
-          return (
-            <Panier key={i} article={el} revendre={() => revendre(i)} />
-          );
-        })}
+        </div>
 
-      </div>
+      }
 
     </div>
   );

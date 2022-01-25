@@ -3,7 +3,7 @@ import "./Card.css"
 
 export default function Card({ article, money, acheter }) {
     return (
-        <div className='card col-2 mx-auto'>
+        <div className={`card col-2 mx-auto ${article.unite == 1? `bg-warning`:`${article.unite === 0? "bg-danger": "bg-lignt"}`}`}>
             <img className='imgCrayon' src={article.img} alt={article.nom} />
             <div className="card-header">{article.nom}</div>
             <div className="card-body d-flex flex-column justify-content-center">
