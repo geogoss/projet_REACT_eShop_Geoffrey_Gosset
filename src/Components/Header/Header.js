@@ -3,7 +3,7 @@ import "./Header.css"
 
 export default function Header() {
   return (
-    <div className='cadreHeader'>
+    <div className='cadreHeader mb-5'>
         <div className='logoEtInput'>
         <div className='geofBureau'>
             <span>GeofBureau</span>
