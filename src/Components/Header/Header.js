@@ -9,7 +9,7 @@ export default function Header() {
             <span>GeofBureau</span>
             <span>Tout le bureau <b>En mieux</b></span>
         </div>
-        <input type="text" />
+        <input type="text" placeholder='rechercher' />
         </div>
         <div className='liste'>
             <ul className='lesLi'>
