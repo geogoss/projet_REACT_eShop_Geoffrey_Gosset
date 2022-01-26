@@ -32,26 +32,26 @@ function App() {
   // Opération acheter
 
   let acheter = (i) => {
-    // copie des useState
+    // copie des useState => variables temporaires
     let copieArgent = argent;
     let copieArticles = articles;
 
     // Action
     copieArgent -= articles[i].prix;
     copieArticles[i].unite--;
-    panier.unshift(articles[i])
+    panier.unshift(articles[i]);
 
     // update les useState
     setArticles(copieArticles);
-    setPanier(panier);
-    setArgent(copieArgent)
+    // setPanier(panier);
+    setArgent(copieArgent);
 
   };
 
   // Opération revendre
 
   let revendre = (i) => {
-    // copie des useState
+    // copie des useState => variables temporaires
     let copieArticles = [...articles];
     let copiePanier = panier;
     let copieArgent = argent;
@@ -74,9 +74,11 @@ function App() {
     setToggle(!toggle)
   }
 
+  let verifPanier = panier.length
+
   return (
     <div className="App">
-      <Header toggle={changeToggle} />
+      <Header panier={verifPanier} toggle={changeToggle} />
       <p className="display-6 ms-5 fw-bold">Mon argent : {argent}</p>
       <div className="carte row m-0">
         {articles.map((el, i) => {
@@ -89,14 +91,11 @@ function App() {
         <div className="achat">
           {panier.map((el, i) => {
             return (
-              <Panier key={i} article={el} revendre={() => revendre(i)} />
+                <Panier key={i} article={el} revendre={() => revendre(i)} />              
             );
           })}
-
         </div>
-
       }
-
     </div>
   );
 }

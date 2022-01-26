@@ -15,9 +15,10 @@ export default function Header(props) {
             <ul className='lesLi'>
                 <li className='dansLi'><i class="fas fa-list"></i><a href="#">Commandes Express</a></li>
                 <li className='dansLi'><i class="far fa-user-circle"></i><a href="#">Mon compte</a></li>
-                <li onClick={props.toggle} className='dansLi'><i class="fas fa-shopping-cart"></i><a href="#">Panier</a></li>
+                <li onClick={props.toggle} className={props.panier != 0 ? 'dansLi active' : 'dansLi'}><i class="fas fa-shopping-cart"></i><a href="#panier"> {props.panier === 0 ? "Panier vide" : "Voir panier"}</a></li>
             </ul>
         </div>
     </div>
   );
 }
+

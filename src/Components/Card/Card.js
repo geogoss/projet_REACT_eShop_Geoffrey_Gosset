@@ -8,7 +8,10 @@ export default function Card({ article, money, acheter }) {
             <div className="card-header">{article.nom}</div>
             <div className="card-body d-flex flex-column justify-content-center">
                 <span className='mb-2'>Prix : {article.prix} <i class="fas fa-euro-sign"></i> </span>
-                <span>Stock : {article.unite} unités</span>
+                <span className={article.unite == 1 ? "fs-4 text-danger" : article.unite === 0 && "text-white"}>Stock : {article.unite} {article.unite <= 1 ? "unité" : "unités" }</span>
+            </div>
+            <div>
+
             </div>
             <div className="card-footer">
                 <button onClick={acheter} className={`btn btn-outline-dark bg-info font-weight-bold ${money < article.prix || article.unite <= 0 ? "d-none" : ""}`}> Acheter </button>
